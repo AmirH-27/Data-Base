@@ -1,0 +1,46 @@
+CREATE TABLE publishers(
+     pubid INT, 
+     pname VARCHAR2(20), 
+     email VARCHAR2(20),
+     phone VARCHAR2(20)
+);
+CREATE TABLE authors(
+     auid INT, 
+     aname VARCHAR2(20), 
+     email VARCHAR2(20),
+     phone VARCHAR2(20)
+);
+
+CREATE TABLE subjects(
+     subid INT, 
+     sname VARCHAR2(20)
+);
+
+CREATE TABLE titleauthors(
+     titleid INT, 
+     authid INT, 
+     importance VARCHAR2(20)
+);
+
+CREATE TABLE titles(
+     titleid INT,
+     title VARCHAR2(20),
+     pubid INT,
+     subid INT,
+     pubdate VARCHAR2(20),
+     cover VARCHAR2(20),
+     price VARCHAR2(20)
+);
+
+ALTER TABLE publishers ADD CONSTRAINT a PRIMARY KEY(pubid);
+ALTER TABLE authors ADD CONSTRAINT b PRIMARY KEY(auid);
+ALTER TABLE titles ADD CONSTRAINT c PRIMARY KEY(titleid);
+ALTER TABLE subjects ADD CONSTRAINT d PRIMARY KEY(subid);
+
+ALTER TABLE titles ADD CONSTRAINT e FOREIGN KEY(pubid) REFERENCES publishers(pubid);
+ALTER TABLE titles ADD CONSTRAINT f FOREIGN KEY(subid) REFERENCES subjects(subid);
+ALTER TABLE titleauthors ADD CONSTRAINT g FOREIGN KEY(titleid) REFERENCES titles(titleid);
+ALTER TABLE titleauthors ADD CONSTRAINT h FOREIGN KEY(authid) REFERENCES authors(auid);
+
+
+

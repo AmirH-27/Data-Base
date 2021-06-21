@@ -1,0 +1,71 @@
+CREATE TABLE Pharmacy ( 
+    p_id number(5) primary key , 
+    p_name varchar2(20) 
+); 
+
+CREATE TABLE location ( 
+    p_id number(5) primary key, 
+    p_location varchar2(20)
+); 
+
+ALTER TABLE location add constraint p1 foreign key (p_id)references Pharmacy(p_id); 
+
+CREATE TABLE Doctor ( 
+    d_id number(5) primary key , 
+    d_name varchar2(20), 
+    d_country varchar2(20), 
+    d_city varchar2(20)
+    CONSTRAINT fk_address    
+    FOREIGN KEY (p_id)
+    REFERENCES Address(p_id) 
+); 
+
+  
+CREATE TABLE Medicine ( 
+    m_id number(5) primary key , 
+    m_name varchar2(20), 
+    m_company varchar2(20) 
+    CONSTRAINT fk_doctor
+    FOREIGN KEY (d_id)
+    REFERENCES Doctor(d_id));
+); 
+  
+CREATE TABLE speciality ( 
+    d_id number(5), 
+    d_speciality varchar2(20) 
+); 
+
+ALTER TABLE speciality add constraint d1 foreign key (d_id)references Doctor(d_id); 
+
+CREATE TABLE FK (    
+    p_id number(10),
+    m_id number(10),
+    CONSTRAINT PK_ID primary key (p_id, m_id)
+);
+
+
+INSERT INTO Pharmacy VALUES(1,'Lazz');
+INSERT INTO Pharmacy VALUES(2,'Lucifer');
+INSERT INTO Pharmacy VALUES(3,'John');
+
+INSERT INTO location VALUES(1,'Mirpur - 1');
+INSERT INTO location VALUES(1,'Mirpur - 11');
+INSERT INTO location VALUES(2,'Dhanmondi');
+INSERT INTO location VALUES(2,'Mohammadpur');
+INSERT INTO location VALUES(3,'Lalmatia');
+INSERT INTO location VALUES(3,'Old town');
+
+INSERT INTO Medicine VALUES(105,'Napa','ACI');
+INSERT INTO Medicine VALUES(111,'Exim','Square');
+INSERT INTO Medicine VALUES(199,'Ancor','Beximco');
+
+INSERT INTO Doctor VALUES(01,'Lucifer Morningstar' , 'England' , 'London'); 
+INSERT INTO Doctor VALUES(02,'Krista Acosta' , 'India' , 'Mumbai');
+INSERT INTO Doctor VALUES(03,'Ashraf Walker' , 'Dhaka' , 'Bangladesh');
+
+INSERT INTO speciality VALUES('01','Medicines');
+INSERT INTO speciality VALUES('01','Bones');
+INSERT INTO speciality VALUES('02','Cancer');
+INSERT INTO speciality VALUES('02','Diagnostic radiology');
+INSERT INTO speciality VALUES('03','General practice');
+INSERT INTO speciality VALUES('03','Dermatology');

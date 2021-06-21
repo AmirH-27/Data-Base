@@ -1,0 +1,31 @@
+1. SELECT ename, loc
+   FROM emp,dept
+   WHERE emp.deptno = dept.deptno AND loc = 'DALLAS';
+
+2. SELECT ename, emp.deptno, dname 
+   FROM emp, dept
+   WHERE emp.deptno = dept.deptno;
+
+3. SELECT ename, dname 
+   FROM emp, dept
+   WHERE emp.deptno = dept.deptno AND sal>3000;
+
+4. SELECT worker.ename
+   FROM emp worker, emp mgr
+   WHERE worker.mgr = mgr.empno AND worker.hiredate<mgr.hiredate;
+
+5. SELECT worker.ename,nvl(mgr.ename, 'NO MANAGER')AS "MANAGER"
+   FROM emp worker, emp mgr
+   WHERE worker.mgr = mgr.empno(+);
+
+6. SELECT ename, grade 
+   FROM emp, salgrade
+   WHERE emp.sal between salgrade.losal and salgrade.hisal and grade = 3;
+
+7. SELECT ename, dname 
+   FROM emp, dept
+   WHERE emp.deptno(+) = dept.deptno;
+
+
+
+
